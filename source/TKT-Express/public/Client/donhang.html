@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<title>Lịch sử đơn hàng</title>
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Roboto:wght@500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+
+
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow border-top border-5 border-primary sticky-top p-0">
+        <a href="index.html" class="navbar-brand bg-primary d-flex align-items-center px-4 px-lg-5">
+            <h2 class="mb-2 text-white">KTTExpress</h2>
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="profile.html" class="nav-item nav-link">Thông tin</a>
+                <a href="giaohang.html" class="nav-item nav-link">Giao hàng</a>
+                <a href="donhang.html" class="nav-item nav-link active">Đơn hàng</a>
+                <a href="giaohang.html" class="nav-item nav-link">Đăng xuất</a>
+            </div>
+        </div>
+    </nav>
+
+
+    <!--Lichsudonhang Start-->
+    <div class="lichsudonhang container">
+        <div>
+            <h1> Lịch sử đơn hàng</h1>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Trạng thái</th>
+                    <th scope="col">Đơn hàng</th>
+                    <th scope="col">Nhân viên vận chuyển</th>
+                    <th scope="col">Chi phí</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="col">001</th>
+                    <th scope="col">
+                        <!-- Kích hoạt modal chi tiết trạng thái -->
+                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
+                            data-bs-target="#chitiettrangthai">
+                            Đang lấy hàng
+                        </button>
+                        <!-- Modal chi tiết trạng thái  -->
+                        <div class="modal fade" id="chitiettrangthai" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-lg modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Quá trình vận chuyển</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+
+                                    <!-- Content chi tiết trạng thái -->
+                                    <div class="modal-body">
+                                        Đang ở Sài gòn , đang ở Hà Nội.
+                                    </div>
+                                    <div class="modal-footer">
+                                        <!---->
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- -->
+
+                    </th>
+
+                    <th scope="col">
+                        <div class="row">
+                            <div class="col-lg-9">
+                                Tên mặt hàng + chi tiết mặt hàng
+                            </div>
+                            <div class="col-lg-3">
+                                <!-- Kích hoạt modal chi tiết giao hàng -->
+                                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
+                                    data-bs-target="#chitietmathang">
+                                    Chi tiết
+                                </button>
+                                <!-- Modal chi tiết giao hàng  -->
+                                <div class="modal fade" id="chitietmathang" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Chi tiết giao hàng</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+
+                                            <!-- Content chi tiết giao hàng-->
+                                            <div class="modal-body">
+                                                <div>Địa chỉ giao hàng</div>
+                                                <div>Địa chỉ nhận hàng</div>
+                                                <div>Người nhận hàng</div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <!---->
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- -->
+
+                            </div>
+                        </div>
+                    </th>
+
+                    <th scope="col">
+                        <div class="row">
+                            <div class="col-lg-9">
+                                Tên nhân viên vận chuyển
+                            </div>
+                            <div class="col-lg-3">
+                                <!-- Kích hoạt modal thông tin người vận chuyển -->
+                                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
+                                    data-bs-target="#chitietnguoivanchuyen">
+                                    Chi tiết
+                                </button>
+                                <!-- Modal chi tiết giao hàng  -->
+                                <div class="modal fade" id="chitietnguoivanchuyen" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Chi tiết người vận chuyển
+                                                </h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+
+                                            <!-- Content chi tiết giao hàng-->
+                                            <div class="modal-body">
+                                                <div>Id xe tải</div>
+                                                <div>Loại xe</div>
+                                                <div>Ảnh xe tải</div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <!---->
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- -->
+                            </div>
+                        </div>
+                    </th>
+
+                    <th scope="col">5 trăm tỷ USD</th>
+                    <th scope="col">
+                        <!-- Kích hoạt modal hủy đơn hàng -->
+                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
+                            data-bs-target="#huydon">
+                            Hủy đơn
+                        </button>
+                        <!-- Modal chi tiết hủy đơn  -->
+                        <div class="modal fade" id="huydon" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Hủy đơn hàng vận chuyển</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+
+                                    <!-- Content chi tiết hủy đơn-->
+                                    <form action="">
+                                        <div class="modal-body">
+                                            <div class="form-group row">
+                                                <label for="lydohuydon" class="col-form-label">Lý do hủy đơn giao hàng
+                                                    :</label>
+                                                <div>
+                                                    <input type="text" class="form-control" id="lydohuydon"
+                                                        placeholder="địa chỉ sai ,...">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button submit" class="btn btn-outline-primary">Xác nhận
+                                                hủy</button>
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Thoát</button>
+                                    </form>
+                                    <!---->
+                                </div>
+                            </div>
+                        </div>
+    </div>
+    <!-- -->
+    </div>
+
+    </th>
+    </tr>
+    </tbody>
+    </table>
+
+
+
+    </div>
+    <!--Lichsudonhang End-->
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>

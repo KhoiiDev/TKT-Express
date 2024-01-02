@@ -1,0 +1,137 @@
+<!--Profile Start-->
+
+
+<div class="clientprofile">
+    <div class="row">
+        <!--Nơi để ảnh-->
+        <div class="col-lg-3">
+            <div class="picture d-flex justify-content-center">
+                <img width="200" src="{{user.profilePhoto}}">
+            </div>
+        </div>
+        <!---->
+
+        <!--Nơi chứa thông tin người dùng-->
+        <div class="col-lg-9">
+            <div class="profile">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <h5>Tên người dùng : </h5>
+                    </div>
+                    <div class="col-lg-8">
+                        <h5>{{user.fullname}}</h5>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-4">
+                        <h5>Tên tài khoản: </h5>
+                    </div>
+                    <div class="col-lg-8">
+                        <h5>{{user.username}}</h5>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-4">
+                        <h5>SĐT: </h5>
+                    </div>
+                    <div class="col-lg-8">
+                        <h5>{{user.phone}}</h5>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-4">
+                        <h5>Giới tính : </h5>
+                    </div>
+                    <div class="col-lg-8">
+                        <h5>{{user.gender}}</h5>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-4">
+                        <h5>Địa chỉ : </h5>
+                    </div>
+                    <div class="col-lg-8">
+                        <h5>{{user.location}}</h5>
+                    </div>
+                </div>
+
+                <!--Kích hoạt form thay đổi thông tin người dùng-->
+                <div class="d-flex justify-content-center">
+                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
+                        data-bs-target="#thaydoithongtinclient">
+                        Chỉnh sửa thông tin
+                    </button>
+                    <a href="/auth/ForgotPassword" type="button" class="btn btn-outline-primary">Forgot Password</a>
+                </div>
+                <!---->
+            </div>
+        </div>
+        <!-- -->
+    </div>
+</div>
+<!--Profile End-->
+<!-- Modal thay đổi thông tin người dùng -->
+<div class="modal fade" id="thaydoithongtinclient" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Thay đổi thông tin</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/profile/update" method="POST" enctype="multipart/form-data">
+                    <div class="container-lg">
+                        <div>
+                            <label for="tennguoidung" class="form-label">Tên người dùng</label>
+                            <input value="{{ user.fullname }}" type="text" class="form-control" id="tennguoidung"
+                                name="fullname">
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label for="sdtnguoidung" class="form-label">Số điện thoại</label>
+                                <input value="{{ user.phone }}" type="tel" class="form-control" id="sdtnguoidung"
+                                    name="phone">
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="gioitinhnguoidung" class="form-label">Giới tính</label>
+                                <select id="gioitinhnguoidung" class="form-select" aria-label="Default select example"
+                                    name="gender">
+                                    <option value="Nam">Nam</option>
+                                    <option value="Nữ">Nữ</option>
+                                    <option value="Orther">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="diachinguoidung" class="form-label">Địa chỉ</label>
+                            <input value=" {{ user.location }}" type="text" class="form-control" id="diachinguoidung"
+                                name="location">
+                        </div>
+                        <div>
+                            <label for="email" class="form-label">Email</label>
+                            <input value=" {{ user.email }}" type="email" class="form-control" id="email" name="email">
+                        </div>
+                        <div>
+                            <label for="profilePhoto" class="form-label">Email</label>
+                            <input value=" {{ user.email }}" type="file" class="form-control" id="profilePhoto"
+                                name="profilePhoto">
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button type="button submit" class="btn btn-primary">Xác nhận</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Thoát</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#infoNavID').addClass("active");
+</script>

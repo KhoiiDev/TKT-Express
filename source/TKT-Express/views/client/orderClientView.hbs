@@ -1,0 +1,182 @@
+<!--Lichsudonhang Start-->
+<div class="lichsudonhang container">
+    <div>
+        <h1> Lịch sử đơn hàng</h1>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Trạng thái</th>
+                <th scope="col">Đơn hàng</th>
+                <th scope="col">Nhân viên vận chuyển</th>
+                <th scope="col">Chi phí</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="col">001</th>
+                <th scope="col">
+                    <!-- Kích hoạt modal chi tiết trạng thái -->
+                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
+                        data-bs-target="#chitiettrangthai">
+                        Đang lấy hàng
+                    </button>
+                    <!-- Modal chi tiết trạng thái  -->
+                    <div class="modal fade" id="chitiettrangthai" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Quá trình vận chuyển</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+
+                                <!-- Content chi tiết trạng thái -->
+                                <div class="modal-body">
+                                    Đang ở Sài gòn , đang ở Hà Nội.
+                                </div>
+                                <div class="modal-footer">
+                                    <!---->
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- -->
+
+                </th>
+
+                <th scope="col">
+                    <div class="row">
+                        <div class="col-lg-9">
+                            Tên mặt hàng + chi tiết mặt hàng
+                        </div>
+                        <div class="col-lg-3">
+                            <!-- Kích hoạt modal chi tiết giao hàng -->
+                            <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
+                                data-bs-target="#chitietmathang">
+                                Chi tiết
+                            </button>
+                            <!-- Modal chi tiết giao hàng  -->
+                            <div class="modal fade" id="chitietmathang" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Chi tiết giao hàng</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+
+                                        <!-- Content chi tiết giao hàng-->
+                                        <div class="modal-body">
+                                            <div>Địa chỉ giao hàng</div>
+                                            <div>Địa chỉ nhận hàng</div>
+                                            <div>Người nhận hàng</div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <!---->
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- -->
+
+                        </div>
+                    </div>
+                </th>
+
+                <th scope="col">
+                    <div class="row">
+                        <div class="col-lg-9">
+                            Tên nhân viên vận chuyển
+                        </div>
+                        <div class="col-lg-3">
+                            <!-- Kích hoạt modal thông tin người vận chuyển -->
+                            <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
+                                data-bs-target="#chitietnguoivanchuyen">
+                                Chi tiết
+                            </button>
+                            <!-- Modal chi tiết giao hàng  -->
+                            <div class="modal fade" id="chitietnguoivanchuyen" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Chi tiết người vận chuyển
+                                            </h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+
+                                        <!-- Content chi tiết giao hàng-->
+                                        <div class="modal-body">
+                                            <div>Id xe tải</div>
+                                            <div>Loại xe</div>
+                                            <div>Ảnh xe tải</div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <!---->
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- -->
+                        </div>
+                    </div>
+                </th>
+
+                <th scope="col">5 trăm tỷ USD</th>
+                <th scope="col">
+                    <!-- Kích hoạt modal hủy đơn hàng -->
+                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
+                        data-bs-target="#huydon">
+                        Hủy đơn
+                    </button>
+                    <!-- Modal chi tiết hủy đơn  -->
+                    <div class="modal fade" id="huydon" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Hủy đơn hàng vận chuyển</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+
+                                <!-- Content chi tiết hủy đơn-->
+                                <form action="">
+                                    <div class="modal-body">
+                                        <div class="form-group row">
+                                            <label for="lydohuydon" class="col-form-label">Lý do hủy đơn giao hàng
+                                                :</label>
+                                            <div>
+                                                <input type="text" class="form-control" id="lydohuydon"
+                                                    placeholder="địa chỉ sai ,...">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button submit" class="btn btn-outline-primary">Xác nhận
+                                            hủy</button>
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Thoát</button>
+                                </form>
+                                <!---->
+                            </div>
+                        </div>
+                    </div>
+                </th>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<!--Lichsudonhang End-->

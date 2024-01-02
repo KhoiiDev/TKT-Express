@@ -1,0 +1,392 @@
+<title>Order</title>
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4">Order Management</h4>
+
+    <div class="card">
+        <div class="card-body">
+            <!-- Modal add new-->
+            <form id="modalFormAdd" enctype="multipart/form-data" method="post">
+                <div class="modal fade" id="modalAdd" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalCenterTitle">Add Employee</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col mb-3">
+                                        <label class="form-label" for="nameInput">Name</label>
+                                        <input type="text" class="form-control" id="nameInput" name="nameInput" />
+                                    </div>
+                                    <p id="errorName" class="text-danger"></p>
+                                </div>
+                                <div class="row">
+                                    <div class="col mb-3">
+                                        <label class="form-label" for="emailInput">Email</label>
+                                        <input type="email" class="form-control" id="emailInput" name="emailInput" />
+                                    </div>
+                                    <p id="errorEmail" class="text-danger"></p>
+                                </div>
+                                <div class="row">
+                                    <div class="col mb-3">
+                                        <label class="form-label" for="positionInput">Position</label>
+                                        <input type="text" class="form-control" id="positionInput"
+                                            name="positionInput" />
+                                    </div>
+                                    <p id="errorPosition" class="text-danger"></p>
+                                </div>
+                                <div class="row">
+                                    <div class="col mb-3">
+                                        <label class="form-label" for="workplace">Workplace</label>
+                                        {{!-- <input type="text" class="form-control" id="workplace" name="workplace" />
+                                        --}}
+                                        <select class="form-control" id="workplace" name="workplace">
+                                            <option value="BacGiang">Bắc Giang</option>
+                                            <option value="BacKan">Bắc Kạn</option>
+                                            <option value="BacLieu">Bạc Liêu</option>
+                                            <option value="BacNinh">Bắc Ninh</option>
+                                            <option value="BaRiaVungTau">Bà Rịa - Vũng Tàu</option>
+                                            <option value="BenTre">Bến Tre</option>
+                                            <option value="BinhDinh">Bình Định</option>
+                                            <option value="BinhDuong">Bình Dương</option>
+                                            <option value="BinhPhuoc">Bình Phước</option>
+                                            <option value="BinhThuan">Bình Thuận</option>
+                                            <option value="CaMau">Cà Mau</option>
+                                            <option value="CanTho">Cần Thơ</option>
+                                            <option value="CaoBang">Cao Bằng</option>
+                                            <option value="DaNang">Đà Nẵng</option>
+                                            <option value="DakLak">Đắk Lắk</option>
+                                            <option value="DakNong">Đắk Nông</option>
+                                            <option value="DienBien">Điện Biên</option>
+                                            <option value="DongNai">Đồng Nai</option>
+                                            <option value="DongThap">Đồng Tháp</option>
+                                            <option value="GiaLai">Gia Lai</option>
+                                            <option value="HaGiang">Hà Giang</option>
+                                            <option value="HaNam">Hà Nam</option>
+                                            <option value="HaNoi">Hà Nội</option>
+                                            <option value="HaTinh">Hà Tĩnh</option>
+                                            <option value="HaiDuong">Hải Dương</option>
+                                            <option value="HaiPhong">Hải Phòng</option>
+                                            <option value="HauGiang">Hậu Giang</option>
+                                            <option value="HoaBinh">Hòa Bình</option>
+                                            <option value="HungYen">Hưng Yên</option>
+                                            <option value="KhanhHoa">Khánh Hòa</option>
+                                            <option value="KienGiang">Kiên Giang</option>
+                                            <option value="KonTum">Kon Tum</option>
+                                            <option value="LaiChau">Lai Châu</option>
+                                            <option value="LamDong">Lâm Đồng</option>
+                                            <option value="LangSon">Lạng Sơn</option>
+                                            <option value="LaoCai">Lào Cai</option>
+                                            <option value="LongAn">Long An</option>
+                                            <option value="NamDinh">Nam Định</option>
+                                            <option value="NgheAn">Nghệ An</option>
+                                            <option value="NinhBinh">Ninh Bình</option>
+                                            <option value="NinhThuan">Ninh Thuận</option>
+                                            <option value="PhuTho">Phú Thọ</option>
+                                            <option value="PhuYen">Phú Yên</option>
+                                            <option value="QuangBinh">Quảng Bình</option>
+                                            <option value="QuangNam">Quảng Nam</option>
+                                            <option value="QuangNgai">Quảng Ngãi</option>
+                                            <option value="QuangNinh">Quảng Ninh</option>
+                                            <option value="QuangTri">Quảng Trị</option>
+                                            <option value="SocTrang">Sóc Trăng</option>
+                                            <option value="SonLa">Sơn La</option>
+                                            <option value="TayNinh">Tây Ninh</option>
+                                            <option value="ThaiBinh">Thái Bình</option>
+                                            <option value="ThaiNguyen">Thái Nguyên</option>
+                                            <option value="ThanhHoa">Thanh Hóa</option>
+                                            <option value="ThuaThienHue">Thừa Thiên Huế</option>
+                                            <option value="TienGiang">Tiền Giang</option>
+                                            <option value="TPHoChiMinh">TP Hồ Chí Minh</option>
+                                            <option value="TraVinh">Trà Vinh</option>
+                                            <option value="TuyenQuang">Tuyên Quang</option>
+                                            <option value="VinhLong">Vĩnh Long</option>
+                                            <option value="VinhPhuc">Vĩnh Phúc</option>
+                                            <option value="YenBai">Yên Bái</option>
+                                        </select>
+                                    </div>
+                                    <p id="errorWorkplace" class="text-danger"></p>
+                                </div>
+                                <div class="row">
+                                    <div class="col mb-3">
+                                        <label class="form-label" for="phoneInput">Phone</label>
+                                        <input type="text" class="form-control" id="phoneInput" name="phoneInput" />
+                                    </div>
+                                    <p id="errorPhone" class="text-danger"></p>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6 mb-3">
+                                        <label for="imageInput" class="form-label">Image</label>
+                                        <input type="file" ref="file" class="form-control" id="imageInput"
+                                            name="imageInput" />
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <img id="imagePreview" src="#" alt="Preview"
+                                            style="display: none; max-width: 200px; max-height: 200px;" />
+                                    </div>
+                                    <p id="errorImage" class="text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                    Close
+                                </button>
+                                <button class="btn btn-primary">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Modal delete confirm an Brand -->
+            <div class="modal fade" id="modalDelete" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalCenterTitle">Delete Confirmation</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h5 class="text-muted fw-light">Are you sure you want to delete
+                                <b id="NameDelete"></b>
+                            </h5>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">No</button>
+                            <button type="button" class="btn btn-primary delete-button" id="confirm-delete">Yes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{!-- Body --}}
+            <div class="card-body">
+                <div class="table-responsive text-nowrap">
+                    <table class="table table-bordered" id="myTable">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Người gửi</th>
+                                <th>SĐT gửi</th>
+                                <th>Người nhận</th>
+                                <th>SĐT nhận</th>
+                                <th>Image</th>
+                                <th>Trạng thái</th>
+
+                                <th class="text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each orders}}
+                            <tr id="trow_{{this._id}}">
+                                <td>{{@index}}</td>
+                                <td>
+                                    <div class="overflow-hidden" style="max-width: 120px;">
+                                        <strong>{{this.senderUserName}}</strong>
+                                    </div>
+                                </td>
+                                <td>
+                                    {{this.senderPhone}}
+                                </td>
+                                <td>
+                                    {{this.receiverUserName}}
+                                </td>
+                                <td>
+                                    {{this.receiverPhone}}
+                                </td>
+                                <td>
+                                    <img id="img_{{this._id}}" src="{{this.itemImage}}" alt="" height="50">
+                                </td>
+                                <td>
+                                    {{this.status}}
+                                </td>
+
+                                <td class="text-center">
+                                    <button type="submit" class="btn btn-link" data-bs-toggle="modal"
+                                        data-bs-target="#modalEdit_{{this._id}}">
+                                        <i class='bx bxs-face-mask' style='color:#33CCFF'></i>
+                                    </button>
+                                    <div class="modal fade" id="modalEdit_{{this._id}}" tabindex="-1"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h2 class="modal-title" id="modalCenterTitle">DETAIL</h2>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="form-group row">
+                                                        <label for="diachinhanhang" class="col-form-label fw-bold">Địa
+                                                            chỉ nhận
+                                                            hàng</label>
+                                                        <div>
+
+                                                            <input type="text" class="form-control" id="senderAddress"
+                                                                name="senderAddress" placeholder="Địa chỉ lấy hàng"
+                                                                value="{{this.senderAddress}}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-lg-6">
+                                                            <label for="senderUserName"
+                                                                class="col-form-label fw-bold">Người
+                                                                gửi</label>
+                                                            <div>
+                                                                <input type="text" class="form-control"
+                                                                    id="senderUserName" name="senderUserName"
+                                                                    placeholder="Người gửi"
+                                                                    value="{{this.senderUserName}}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <label for="senderPhone" class="col-form-label fw-bold">Số
+                                                                điện
+                                                                thoại</label>
+                                                            <div>
+                                                                <input type="phone" class="form-control"
+                                                                    id="senderPhone" name="senderPhone"
+                                                                    placeholder="Số điện thoại"
+                                                                    value="{{this.senderPhone}}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-8">
+                                                            <label for="senderEmail"
+                                                                class="col-form-label fw-bold">Email người
+                                                                gửi</label>
+                                                            <div>
+                                                                <input type="email" class="form-control "
+                                                                    id="senderEmail" name="senderEmail"
+                                                                    placeholder="Email" value="{{this.senderEmail}}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="receiverAddress" class="col-form-label fw-bold">Địa
+                                                            chỉ giao
+                                                            hàng</label>
+                                                        <div>
+
+                                                            <input type="text" class="form-control" id="receiverAddress"
+                                                                name="receiverAddress" placeholder="Địa chỉ giao hàng"
+                                                                value="{{this.receiverAddress}}">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <div class="col-lg-6">
+                                                            <label for="receiverUserName"
+                                                                class="col-form-label fw-bold">Người
+                                                                nhận</label>
+                                                            <div>
+                                                                <input type="text" class="form-control"
+                                                                    id="receiverUserName" name="receiverUserName"
+                                                                    placeholder="Người nhận"
+                                                                    value="{{this.receiverUserName}}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <label for="receiverPhone" class="col-form-label fw-bold">Số
+                                                                điện
+                                                                thoại</label>
+                                                            <div>
+                                                                <input type="phone" class="form-control"
+                                                                    id="receiverPhone" name="receiverPhone"
+                                                                    placeholder="Số điện thoại"
+                                                                    value="{{this.receiverPhone}}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-lg-6">
+                                                            <label for="itemCategory"
+                                                                class="col-form-label fw-bold">Loại mặt
+                                                                hàng</label>
+                                                            <div>
+                                                                <input type="text" class="form-control"
+                                                                    id="itemCategory" name="itemCategory"
+                                                                    placeholder="Loại hàng"
+                                                                    value="{{this.itemCategory}}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <label for="itemDetails" class="col-form-label fw-bold">Chi
+                                                                tiết mặt
+                                                                hàng</label>
+                                                            <div>
+                                                                <input type="text" class="form-control" id="itemDetails"
+                                                                    name="itemDetails" placeholder=""
+                                                                    value="{{this.itemDetails}}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <label for="itemWeight" class="col-form-label fw-bold">Cân
+                                                                nặng</label>
+                                                            <div>
+                                                                <input type="number" class="form-control"
+                                                                    id="itemWeight" name="itemWeight" placeholder=""
+                                                                    value="{{this.itemWeight}}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <label for="itemImage" class="col-form-label fw-bold">Hình
+                                                                ảnh đơn
+                                                                hàng</label>
+                                                            <div>
+                                                                <img id="img_{{this._id}}" src="{{this.itemImage}}"
+                                                                    alt="" height="70" width="90">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-lg-5">
+                                                            <label for="cost" class="col-form-label">
+                                                                <h4> Chi phí : <b id="cost"> {{this.cost}}</b> </h4>
+                                                            </label>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-outline-secondary"
+                                                        data-bs-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="btn-group back-to-top" style="display: inline;">
+                <button type="button" class="btn btn-success btn-icon rounded-pill dropdown-toggle hide-arrow"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class='bx bx-brightness'></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end p-1">
+                    <li class="p-1">
+                        <button onclick="AddNewBrands(this)" class="btn btn-info btn-icon rounded-pill"
+                            data-bs-toggle="modal" data-bs-target="#modalAdd">
+                            <i class='bx bx-plus-medical'></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#orderAdmin').addClass('active bx-flashing bx-rotate-0');
+</script>
+
+<script src="/Admin/action/employeeAction.js"></script>

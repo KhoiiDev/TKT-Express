@@ -1,0 +1,282 @@
+<!--Lấy hàng vận chuyển Start-->
+<form action="" id="editShipment_form">
+    <div class="modal fade" id="chitiettrangthai" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Quá trình vận chuyển</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <!-- Content chi tiết trạng thái -->
+                <div class="modal-body">
+                    <div class="btn btn-outline-primary">
+                        <input class="form-check-input" type="radio" name="shipStatus" id="inlineRadio1"
+                            value="Pending">
+                        <label class="form-check-label" for="inlineRadio1">Pending</label>
+                    </div>
+                    <div class="btn btn-outline-primary">
+                        <input class="form-check-input" type="radio" name="shipStatus" id="inlineRadio2"
+                            value="In transit">
+                        <label class="form-check-label" for="inlineRadio2">In transit</label>
+                    </div>
+                    <div class="btn btn-outline-primary">
+                        <input class="form-check-input" type="radio" name="shipStatus" id="inlineRadio3"
+                            value="Delivered">
+                        <label class="form-check-label" for="inlineRadio3">Delivered</label>
+                    </div>
+                    <input type="hidden" name="order_id" id="order_id">
+                </div>
+                <div class="modal-footer">
+                    <!---->
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div class="layhang container">
+    <div class="mb-3">
+        <label for="madonhang" class="form-label">Tìm kiếm đơn hàng</label>
+        <input type="text" class="form-control" id="madonhang" placeholder="Mã đơn hàng">
+    </div>
+</div>
+
+<!--Lấy hàng vận chuyển End-->
+
+<!--Các đơn hàng được lấy Start-->
+<div class="listdonhang container">
+
+    <div class="d-flex justify-content-between">
+        <h1> Đơn hàng vận chuyển </h1>
+        <form action="/employee/addOrder" method="post">
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-outline-primary">Nhận đơn.</button>
+            </div>
+        </form>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Mã đơn</th>
+                <th scope="col">Trạng thái</th>
+                <th scope="col">Đơn hàng</th>
+                <th scope="col">Chi phí</th>
+                <th scope="col">Thanh toán</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each orderData}}
+            <tr data-madonhang="{{this._id}}">
+                <th scope="col">{{this._id}}</th>
+                <th scope="col">
+                    <!-- Kích hoạt modal chi tiết trạng thái -->
+                    <button type="button" id="statusShip_{{this._id}}" class="btn btn-outline-primary"
+                        data-bs-toggle="modal" data-bs-target="#chitiettrangthai"
+                        onclick="editShipment('{{this._id}}', '{{this.shipments.status}}')">
+                        {{this.shipments.status}}
+                    </button>
+                    <!-- Modal chi tiết trạng thái  -->
+                    <!-- -->
+                </th>
+
+                <th scope="col">
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <p>
+                                Loại mặt hàng: {{this.itemCategory}}
+                            </p>
+                            <p>
+                                Cân nặng: {{this.itemWeight}}
+                            </p>
+                            <p>
+                                Chi tiết: {{this.itemDetails}}
+                            </p>
+                            <p><img width="250" src="{{this.itemImage}}" alt=""></p>
+                        </div>
+                        <div class="col-lg-3">
+                            <!-- Kích hoạt modal chi tiết giao hàng -->
+                            <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
+                                data-bs-target="#chitietmathang">
+                                Chi tiết
+                            </button>
+                            <!-- Modal chi tiết giao hàng  -->
+                            <div class="modal fade" id="chitietmathang" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Chi tiết giao hàng</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+
+                                        <!-- Content chi tiết giao hàng-->
+                                        <div class="modal-body">
+                                            <div>Địa chỉ giao hàng: {{this.receiverAddress}}</div>
+                                            <div>Địa chỉ nhận hàng: {{this.senderAddress}}</div>
+                                            <div>Người nhận hàng: {{this.receiverUserName}}</div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <!---->
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- -->
+                        </div>
+                    </div>
+                </th>
+                <th scope="col">{{this.cost}}</th>
+                <th scope="col"><button id="statusPay_{{this.payments._id}}" type="button"
+                        onclick="editPay('{{this.payments._id}}')"
+                        class="btn btn-outline-primary">{{this.payments.status}}</button> </th>
+                <th scope="col">
+                    <!-- Kích hoạt modal hủy đơn hàng -->
+                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
+                        data-bs-target="#huydon">
+                        Hủy đơn
+                    </button>
+                    <!-- Modal chi tiết hủy đơn  -->
+                    <div class="modal fade" id="huydon" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Hủy đơn hàng vận chuyển</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+
+                                <!-- Content chi tiết hủy đơn-->
+                                <form action="">
+                                    <div class="modal-body">
+                                        <div class="form-group row">
+                                            <label for="lydohuydon" class="col-form-label">Lý do hủy đơn giao hàng:
+                                            </label>
+                                            <div>
+                                                <input type="text" class="form-control" id="lydohuydon"
+                                                    placeholder="địa chỉ sai ,...">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button submit" class="btn btn-outline-primary">Xác nhận
+                                            hủy</button>
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Thoát</button>
+                                    </div>
+                                </form>
+                                <!---->
+                            </div>
+                        </div>
+                    </div>
+                </th>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+
+<script>
+    function setCheck(id, status) {
+        const radioButtons = document.getElementsByName('shipStatus');
+        for (let i = 0; i < radioButtons.length; i++) {
+            if (radioButtons[i].value === status) {
+                radioButtons[i].checked = true;
+                break;
+            }
+        }
+        $(`#statusShip_${id}`).text(status);
+    }
+    function editShipment(order_id, status) {
+        setCheck(order_id, status);
+        if (status == "Pending") {
+            $('#inlineRadio1').prop('checked', true);
+        }
+        if (status == "In transit") {
+            $('#inlineRadio2').prop('checked', true);
+        }
+        if (status == "Delivered") {
+            $('#inlineRadio3').prop('checked', true);
+        }
+        const form = $('#editShipment_form');
+        form.submit(async function (event) {
+            event.preventDefault();
+
+            const status = $('input[name=shipStatus]:checked').val();
+
+            const data = {
+                order_id: order_id,
+                shipStatus: status
+            }
+            $.ajax({
+                url: '/employee/update',
+                type: 'POST',
+                contentType: 'application/json',
+                processData: false,
+                data: JSON.stringify(data),
+                success: function (res) {
+                    setCheck(order_id, status);
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+
+            form.off('submit');
+            $('#chitiettrangthai').modal("hide");
+        });
+    }
+
+</script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#madonhang").on("change", function () {
+            var maDonHang = $(this).val(); // Lấy giá trị của trường mã đơn hàng
+
+            if (maDonHang != '') {
+                // Ẩn tất cả các dòng trong bảng
+                $("table tr").hide();
+
+                // Hiển thị dòng chứa mã đơn hàng tương ứng
+                $("table tr[data-madonhang='" + maDonHang + "']").show();
+            } else {
+                $("table tr").show();
+            }
+
+        });
+    });
+</script>
+
+
+<script>
+    function editPay(payID) {
+        data = {
+            payID: payID,
+        }
+        console.log(data);
+        $.ajax({
+            url: '/employee/updatePayment',
+            type: 'POST',
+            contentType: 'application/json',
+            processData: false,
+            data: JSON.stringify(data),
+            success: function (res) {
+                const newParagraph = $("<p>").text("Paid");
+                $(`#statusPay_${payID}`).replaceWith(newParagraph)
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    }
+</script>

@@ -1,0 +1,135 @@
+<title>Register</title>
+
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <form id="registerForm" class="login100-form validate-form" action="/register/newUser" method="post">
+                <span class="login100-form-title p-b-26">
+                    Welcome
+                </span>
+                <span class="login100-form-title p-b-48">
+                    <i class="zmdi zmdi-font"></i>
+                </span>
+
+                <div id="errName" class="wrap-input100 validate-input" data-validate="Vui lòng nhập username của bạn.">
+                    <input class="input100" type="text" name="name" id="name">
+                    <span class="focus-input100" data-placeholder="Email"></span>
+                </div>
+
+                <div id="errPass" class="wrap-input100 validate-input"
+                    data-validate="Vui lòng nhập mật khẩu của bạn có ít nhất 6 ký tự.">
+                    <span class="btn-show-pass">
+                        <i class="zmdi zmdi-eye"></i>
+                    </span>
+                    <input class="input100" type="password" name="pass" id="pass">
+                    <span class="focus-input100" data-placeholder="Password"></span>
+                </div>
+
+                <div id="errConPass" class="wrap-input100 validate-input"
+                    data-validate="Vui lòng nhập xác nhận mật khẩu.">
+                    <span class="btn-show-pass">
+                        <i class="zmdi zmdi-eye"></i>
+                    </span>
+                    <input class="input100" type="password" name="ConfirmPass" id="confirmPass">
+                    <span class="focus-input100" data-placeholder="Confirm Password"></span>
+                </div>
+
+                <div class="container-login100-form-btn">
+                    <div class="wrap-login100-form-btn">
+                        <div class="login100-form-bgbtn"></div>
+                        <button class="login100-form-btn" type="submit" onclick="postData()">
+                            Register
+                        </button>
+                    </div>
+                </div>
+
+                <div class="text-center p-t-115">
+                    <a class="txt2" href="/auth/login">
+                        Sign In.
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+    function postData() {
+        const form = $("#registerForm");
+        const name = $("#name");
+        const pass = $("#pass");
+        const CoPass = $("#confirmPass");
+
+        const errName = $("#errName");
+        const errPass = $("#errPass");
+        const errConPass = $("#errConPass");
+
+        let isSubmitting = false;
+
+        form.submit(async function (event) {
+            event.preventDefault();
+            if (isSubmitting) {
+                return;
+            }
+
+            let isValid = true;
+            const nameData = name.val().trim();
+            const passData = pass.val().trim();
+            const CoPassData = CoPass.val().trim();
+
+            if (nameData === '') {
+                errName.addClass("alert-validate");
+                isValid = false;
+            } else {
+                errName.removeClass("alert-validate");
+            }
+
+            if (passData.length < 6) {
+                errPass.addClass("alert-validate");
+                isValid = false;
+            } else {
+                errPass.removeClass("alert-validate");
+            }
+
+            if (CoPassData.length < 6 || passData !== CoPassData) {
+                errConPass.addClass("alert-validate");
+                isValid = false;
+            } else {
+                errConPass.removeClass("alert-validate");
+            }
+
+            if (isValid) {
+                isSubmitting = true;
+                const formData = { name: nameData, pass: passData };
+
+                $.ajax({
+                    url: '/auth/register',
+                    type: 'POST',
+                    data: JSON.stringify(formData),
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    success: function (response) {
+                        form.off('submit'); // Xóa sự kiện submit trên form
+                        form[0].reset();
+
+                        window.location.href = response.redirectUrl;
+                    },
+                    error: function (err) {
+                        if (err.responseJSON.exists) {
+                            errName.attr('data-validate', 'Username đã tồn tại.');
+                            form.off('submit'); // Xóa sự kiện submit trên form
+                            form[0].reset();
+                            errName.addClass("alert-validate");
+                        }
+                        console.log(err);
+                    },
+                    complete: function () {
+                        isSubmitting = false;
+                    }
+                });
+            }
+        });
+    }
+</script>
